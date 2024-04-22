@@ -24,6 +24,6 @@ function insertUserData (){
     ])
 }
 
-insertUserData();
+// insertUserData();
 
 module.exports = router;
