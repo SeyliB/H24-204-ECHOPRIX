@@ -13,8 +13,15 @@ router.get('/', (req, res) => {
     res.render('accueil', data);
 });
 
-router.get('/publications', (req, res) =>{
-    res.render('publications');
+router.get('/publications', async (req, res) =>{
+
+    try {
+        const data = await Post.find();
+        res.render('publications', {data});
+    } catch (error) {
+        console.log(error);
+    }
+
 })
 
 router.get('/compte', (req, res) =>{
@@ -40,10 +47,10 @@ function insertUserData (){
 function insertPostData (){
     Post.insertMany([
         {
-            title: "BMW",
-            description: "Nouvelle 20000km",
+            title: "Chaine de Taha",
+            description: "Jai trouver une chaine dans une classe qui forme des professeurs",
             adresse: "Rue BdeB",
-            price: 215000,
+            price: 100000000000000,
             image: "images/LOGO.png",
             vues: 0
         }
@@ -51,6 +58,6 @@ function insertPostData (){
 }
 
 // insertUserData();
-// insertPostData();
+insertPostData();
 
 module.exports = router;

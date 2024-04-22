@@ -10,9 +10,19 @@
 
     <body>
         <ul>
-            <li> Block1 </li>
-            <li> Block2 </li>
-            <li> Block3 </li>
+            
+        <% data.forEach(post =>{ %>
+            <li> <%= post.title %> </li>
+            <ul>
+                <li>Description: <%= post.description %> </li>
+                <li>Adresse: <%= post.adresse %> </li>
+                <li>Prix: <%= post.price %> $ </li>
+                <li>Image: <%= post.image %> </li>
+                <li>Vues: <%= post.vues %> </li>
+                <li>Date: <%= post.createdAt %> </li>
+            </ul>
+        <% }) %>
+
         </ul>
     </body>
 
