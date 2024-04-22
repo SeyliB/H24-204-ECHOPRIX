@@ -4,6 +4,11 @@ const app = express();
 const PORT = process.env.PORT;
 const path = require('path');
 
+const connectDB = require('./server/configuration/database');
+
+//Connect to DataBase
+connectDB();
+
 // Set 'public' directory as the static directory
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -11,7 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'public', 'views'));
 app.set('view engine', 'ejs');
     
-
 app.use('/', require('./server/routes/main'))
 
 
