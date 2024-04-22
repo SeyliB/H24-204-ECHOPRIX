@@ -14,7 +14,13 @@ app.set('view engine', 'ejs');
         
 
 app.get('/', (req, res) => {
-    res.render('accueil');
+    // Sample data to pass to the EJS template
+    const data = {
+        title: 'ECHOPRIX'
+    };
+
+    // Render the 'index.ejs' template with the provided data
+    res.render('accueil', data);
 });
 
 app.listen(PORT, () => {
