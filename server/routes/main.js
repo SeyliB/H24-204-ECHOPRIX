@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
+const fs = require('fs');
 
 router.get('/', (req, res) => {
     // Sample data to pass to the EJS template
@@ -47,11 +48,11 @@ function insertUserData (){
 function insertPostData (){
     Post.insertMany([
         {
-            title: "Chaine de Taha",
-            description: "Jai trouver une chaine dans une classe qui forme des professeurs",
-            adresse: "Rue BdeB",
-            price: 100000000000000,
-            image: "images/LOGO.png",
+            title: "Cadenas de Taha",
+            description: "Son cadenas s<est fait casser car il aoublier son mot de pass",
+            adresse: "Rue HJ",
+            price: 10,
+            image: fs.readFileSync('public/images/LOCK.png'),
             vues: 0
         }
     ])
