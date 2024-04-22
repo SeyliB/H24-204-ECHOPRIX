@@ -59,6 +59,6 @@ function insertPostData (){
 }
 
 // insertUserData();
-insertPostData();
+// insertPostData();
 
 module.exports = router;
