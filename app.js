@@ -1,18 +1,22 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT;
+const path = require('path');
 
-// Serve static files from the "public" directory
-app.use(express.static('public'));
+// Set 'public' directory as the static directory
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'Images')));
 
-// Define a route to handle API requests
-app.get('/data', (req, res) => {
-  // This is a dummy data example, you would typically fetch data from a database or external API
-  const data = { message: 'Hello from the backend!' };
-  res.json();
+// Set 'views' directory for EJS templates
+app.set('views', path.join(__dirname, 'public', 'views'));
+app.set('view engine', 'ejs');
+        
+
+app.get('/', (req, res) => {
+    res.render('accueil');
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`)
+})
