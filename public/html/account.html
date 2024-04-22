@@ -9,8 +9,27 @@
     </head>
 
     <body>
-        <h1> CRÉEZ VOTRE COMPTE ICI! </h1>
-        <p> Pour créer un compte, il vous suffit de remplir un formulaire avec vos informations personnelles, de vérifier votre adresse e-mail ou votre numéro de téléphone, de compléter votre profil, et enfin, d'accepter les conditions d'utilisation.
+        <form class="form">
+            <input name="username" type="text" placeholder="username">
+            <input name="password" type="text" placeholder="password">
+            <input name="condition" type="checkbox">
+            <button> submit </button>
+        </form>
+        <script>
+            const formElement = document.querySelector('.form')
+            formElement.addEventListener('submit', event => {
+                event.preventDefault();
+                const formData = new FormData(formElement)
+                const data = new URLSearchParams(formData)
+                fetch('https://reqres.in/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: data
+                });
+            })
+        </script>
     </body>
 
 </html>

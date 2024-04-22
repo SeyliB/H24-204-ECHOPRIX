@@ -37,22 +37,6 @@
             </div>
         </section>
 
-        <h1>Accueil</h1>
-        <div id="data"></div>
-        
-        <script>
-            // Make a GET request to the backend API endpoint
-            fetch('/data')
-            .then(response => response.json())
-            .then(data => {
-                // Display the data on the frontend
-                document.getElementById('data').innerText = data.message;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        </script>
-
     </body>
 
 </html>
