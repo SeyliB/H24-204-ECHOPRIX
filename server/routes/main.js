@@ -21,6 +21,10 @@ router.get('/compte', (req, res) =>{
     res.render('compte');
 })
 
+router.get('/recherche', (req, res) =>{
+    res.render('recherche');
+})
+
 function insertUserData (){
     User.insertMany([
         {
