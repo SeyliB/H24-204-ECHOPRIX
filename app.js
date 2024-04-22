@@ -6,7 +6,7 @@ const path = require('path');
 
 // Set 'public' directory as the static directory
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'Images')));
+
 
 // Set 'views' directory for EJS templates
 app.set('views', path.join(__dirname, 'public', 'views'));
