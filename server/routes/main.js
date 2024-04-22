@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Post = require('../models/Post');
 
 router.get('/', (req, res) => {
     // Sample data to pass to the EJS template
@@ -11,6 +12,10 @@ router.get('/', (req, res) => {
     // Render the 'index.ejs' template with the provided data
     res.render('accueil', data);
 });
+
+router.get('/publications', (req, res) =>{
+    res.render('publications');
+})
 
 function insertUserData (){
     User.insertMany([
@@ -24,6 +29,20 @@ function insertUserData (){
     ])
 }
 
+function insertPostData (){
+    Post.insertMany([
+        {
+            title: "BMW",
+            description: "Nouvelle 20000km",
+            adresse: "Rue BdeB",
+            price: 215000,
+            image: "images/LOGO.png",
+            vues: 0
+        }
+    ])
+}
+
 // insertUserData();
+insertPostData();
 
 module.exports = router;
