@@ -28,7 +28,7 @@
                     <p>
                         Une plateforme en ligne où les acheteurs et les vendeurs se rencontrent pour effectuer des transactions commerciales. Les vendeurs peuvent proposer une gamme de produits ou de services, tandis que les acheteurs peuvent parcourir ces offres, comparer les prix et effectuer des achats.
                     </p>
-                    <p> <strong> {{email}} </strong> </p>
+                    <p> <strong> data.email </strong> </p>
                     <button onclick="location.href='/public/html/account.html'">Start Now</button>
                 </div>
                 <div class="right">
@@ -36,7 +36,23 @@
                 </div>
             </div>
         </section>
+
+        <h1>Accueil</h1>
+        <div id="data"></div>
         
+        <script>
+            // Make a GET request to the backend API endpoint
+            fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                // Display the data on the frontend
+                document.getElementById('data').innerText = data.message;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        </script>
+
     </body>
 
 </html>

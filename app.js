@@ -1,31 +1,18 @@
-require('dotenv').config();
-
 const express = require('express');
-
 const app = express();
-const PORT = process.env.PORT;
+const port = 3000;
 
-app.get('/accueil', (req, res) => {
-    // Define the data to be passed to the HTML file
-    const data = {
-      email: 'contact@example.com'
-    };
-  
-    // Define the path to the HTML file
-    const filePath = path.join(__dirname, 'public/html', 'accueil.html');
-  
-    // Read the HTML file and replace placeholders with data
-    res.sendFile(filePath, { 
-      // Specify the root object to replace placeholders
-      root: '.', 
-      // Set custom headers to specify content type
-      headers: {
-        'Content-Type': 'text/html'
-      }
-    });
-  });
+// Serve static files from the "public" directory
+app.use(express.static('public'));
 
+// Define a route to handle API requests
+app.get('/data', (req, res) => {
+  // This is a dummy data example, you would typically fetch data from a database or external API
+  const data = { message: 'Hello from the backend!' };
+  res.json();
+});
 
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`)
-})
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
