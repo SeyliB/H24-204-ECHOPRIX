@@ -13,6 +13,10 @@ router.get('/', (req, res) => {
     res.render('accueil', data);
 });
 
+router.get('/publications.ejs', (req, res) =>{
+    res.render('publications');
+})
+
 router.get('/publications', (req, res) =>{
     res.render('publications');
 })
