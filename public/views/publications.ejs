@@ -17,7 +17,8 @@
                 <li>Description: <%= post.description %> </li>
                 <li>Adresse: <%= post.adresse %> </li>
                 <li>Prix: <%= post.price %> $ </li>
-                <li>Image: <%= post.image %> </li>
+                <li>Image: <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
+                </li>
                 <li>Vues: <%= post.vues %> </li>
                 <li>Date: <%= post.createdAt %> </li>
             </ul>
