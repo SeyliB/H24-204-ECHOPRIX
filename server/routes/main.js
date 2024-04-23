@@ -15,14 +15,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/publications', async (req, res) =>{
-
     try {
         const data = await Post.find();
         res.render('publications', {data});
     } catch (error) {
         console.log(error);
     }
-
 })
 
 router.get('/compte', (req, res) =>{
@@ -31,6 +29,12 @@ router.get('/compte', (req, res) =>{
 
 router.get('/recherche', (req, res) =>{
     res.render('recherche');
+})
+
+router.post('/login', (req, res) =>{
+    var connectionInfo = req.body 
+    console.log(connectionInfo.email);
+    res.redirect('/');
 })
 
 function insertUserData (){
@@ -48,17 +52,17 @@ function insertUserData (){
 function insertPostData (){
     Post.insertMany([
         {
-            title: "Cadenas de Taha",
-            description: "Son cadenas s<est fait casser car il aoublier son mot de pass",
-            adresse: "Rue HJ",
-            price: 10,
-            image: fs.readFileSync('public/images/LOCK.png'),
+            title: "OnePiece Tome 109",
+            description: "EggHead ",
+            adresse: "Rue de OnePiece",
+            price: 50,
+            image: fs.readFileSync('public/images/LOGO.png'),
             vues: 0
         }
     ])
 }
 
 // insertUserData();
-// insertPostData();
+insertPostData();
 
 module.exports = router;

@@ -9,8 +9,19 @@
     </head>
 
     <body>
-        <ul>
-            
+
+        <div class="container">
+            <% data.forEach(post =>{ %>
+                <div class="item">
+                    <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
+                    <%= post.title %>
+                </div>
+            <% }) %>
+
+        </div>
+        
+
+        <!-- <ul> 
         <% data.forEach(post =>{ %>
             <li> <%= post.title %> </li>
             <ul>
@@ -23,8 +34,8 @@
                 <li>Date: <%= post.createdAt %> </li>
             </ul>
         <% }) %>
+        </ul> -->
 
-        </ul>
     </body>
 
 </html>
