@@ -6,8 +6,10 @@
 }
 
 nav {
+    position: fixed;
+    width: 100vw;
     height: 80px;
-    background-color: #83e2ff;
+    background-color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +17,7 @@ nav {
 }
 
 .logo {
-    color: #000;
+    color: white;
     font-size: 1.5rem;
     font-weight: bold;
     font-style: italic;
@@ -23,12 +25,13 @@ nav {
 }
 
 nav a {
-    text-decoration: none;
-    color: #000;
+    color: white;
     padding: 0 1.5rem;
+    text-decoration: none;
 }
 
 .hero {
+    height: 120vh;
     background: #83e2ff;
 }
 
