@@ -15,8 +15,14 @@ body {
 
 .wrapper {
     width: 50vw;
+    height: 50vh;
     background: #ff0000;
     color: #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .wrapper h1 {
