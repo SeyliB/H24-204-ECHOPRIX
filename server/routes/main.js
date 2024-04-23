@@ -5,7 +5,7 @@ const Post = require('../models/Post');
 const fs = require('fs');
 
 
-
+const regexEmail = '/^(?!.*[\/^%$#~()])[^@]*@[^@]+[.][^@]+$/';
 
 router.get('/', (req, res) => {
     // Sample data to pass to the EJS template
@@ -36,9 +36,14 @@ router.get('/recherche', (req, res) =>{
 
 router.post('/login', async (req, res) =>{
 
-    const {email, password} = req.body;
+    try {
+        const {email, password} = req.body;
 
-    console.log(req.body);
+        console.log(req.body);
+    } catch (error) {
+        
+    }
+
 
     res.redirect('/');
 })
