@@ -4,6 +4,9 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 const fs = require('fs');
 
+
+
+
 router.get('/', (req, res) => {
     // Sample data to pass to the EJS template
     const data = {
@@ -31,9 +34,12 @@ router.get('/recherche', (req, res) =>{
     res.render('recherche');
 })
 
-router.post('/login', (req, res) =>{
-    var connectionInfo = req.body 
-    console.log(connectionInfo.email);
+router.post('/login', async (req, res) =>{
+
+    const {email, password} = req.body;
+
+    console.log(req.body);
+
     res.redirect('/');
 })
 
@@ -63,6 +69,6 @@ function insertPostData (){
 }
 
 // insertUserData();
-insertPostData();
+// insertPostData();
 
 module.exports = router;

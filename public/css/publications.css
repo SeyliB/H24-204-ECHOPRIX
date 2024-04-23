@@ -23,6 +23,9 @@ body {
 }
 
 .item {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; /* Center items vertically within the container */
     flex: 0 0 calc(25% - 20px); /* 25% width for 4 items per row, minus margin */
     margin: 10px; /* Margin around each item */
     padding: 20px;
@@ -42,8 +45,9 @@ body {
 }
 
 .item img {
-    width: 10px;
-    height: 10px; /* Ajuster la hauteur de l'image en fonction de la largeur */
+    width: 50%;
+    height: auto; /* Ajuster la hauteur de l'image en fonction de la largeur */
+    max-height: 100px;
     object-fit: cover; /* Remplir l'espace de l'élément en coupant ou étirant l'image */
 }
 
