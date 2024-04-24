@@ -40,7 +40,7 @@ router.post('/login', async (req, res) =>{
 
     console.log(req.body);
 
-    res.redirect('/');
+    res.redirect('/recherche');
 })
 
 function insertUserData (){
