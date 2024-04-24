@@ -73,8 +73,7 @@ button {
 }
 
 button:hover {
-    background: #fff;
-    color: #000;
+    color: #fff;
 }
 
 .right {

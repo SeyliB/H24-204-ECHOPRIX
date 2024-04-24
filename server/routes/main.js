@@ -26,8 +26,8 @@ router.get('/publications', async (req, res) =>{
     }
 })
 
-router.get('/compte', (req, res) =>{
-    res.render('compte');
+router.get('/connection', (req, res) =>{
+    res.render('connection');
 })
 
 router.get('/recherche', (req, res) =>{
