@@ -44,7 +44,7 @@ router.post('/login', async (req, res) =>{
             // je dois checker si le email est dans la base de donner (serach in database with)
             //si oui bah checker si mdp est bon
         }else{
-
+            res.redirect('/connection');
         }
 
         console.log(req.body);
