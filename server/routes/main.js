@@ -3,9 +3,8 @@ const router = express.Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
 const fs = require('fs');
+const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-const regexEmail = '/^(?!.*[\/^%$#~()])[^@]*@[^@]+[.][^@]+$/';
 
 router.get('/', (req, res) => {
     // Sample data to pass to the EJS template
@@ -39,13 +38,21 @@ router.post('/login', async (req, res) =>{
     try {
         const {email, password} = req.body;
 
+        if (regexEmail.test(email)){
+            res.redirect('/publications');
+            //c'est ici que je dois check si le compte existe dans le serv et si c'est le bon
+            // je dois checker si le email est dans la base de donner (serach in database with)
+            //si oui bah checker si mdp est bon
+        }else{
+
+        }
+
         console.log(req.body);
     } catch (error) {
         
     }
 
 
-    res.redirect('/recherche');
 })
 
 function insertUserData (){
