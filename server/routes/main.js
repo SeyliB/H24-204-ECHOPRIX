@@ -7,18 +7,23 @@ const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
 router.get('/', (req, res) => {
-    // Sample data to pass to the EJS template
     const data = {
         title: 'ECHOPRIX',
     };
 
-    // Render the 'index.ejs' template with the provided data
     res.render('accueil', data);
 });
 
 router.get('/publications', async (req, res) =>{
     try {
-        const data = await Post.find();
+        var page = req.session.test || 1;
+        req.session.test = page+1
+        const limit = 2;
+        const skip = (page - 1) * limit;
+        
+        //La ca spawn 5 par 5
+
+        const data = await Post.find().skip(skip).limit(limit);
         res.render('publications', {data});
     } catch (error) {
         console.log(error);
@@ -30,26 +35,38 @@ router.get('/connection', (req, res) =>{
 })
 
 router.get('/recherche', (req, res) =>{
-    res.render('recherche');
+
+    const data = {
+        email: req.session.user.lastName
+    }
+    res.render('recherche', data);
 })
 
 router.post('/login', async (req, res) =>{
 
     try {
+        //Recuperer les informations du form
         const {email, password} = req.body;
 
+        //Check si email correspond aux contraintes
         if (regexEmail.test(email)){
-            res.redirect('/publications');
-            //c'est ici que je dois check si le compte existe dans le serv et si c'est le bon
-            // je dois checker si le email est dans la base de donner (serach in database with)
-            //si oui bah checker si mdp est bon
-        }else{
+        //Check si exist dans Mongo
+        const existingUser = await User.findOne({ email }); 
+
+        //conditions pour se connecter
+        if (existingUser && existingUser.password.toLowerCase() === password.toLowerCase()) {
+            req.session.email = req.body.email;
+            req.session.user = existingUser;
+            res.redirect('/'); 
+        } else {
             res.redirect('/connection');
         }
+        }else{
+            res.redirect('/connection');
 
-        console.log(req.body);
+        }
     } catch (error) {
-        
+        console.log(error);
     }
 
 
