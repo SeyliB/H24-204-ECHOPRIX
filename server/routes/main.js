@@ -3,16 +3,35 @@ const router = express.Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
 const fs = require('fs');
+const { spawn } = require('child_process');
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-router.get('/', (req, res) => {
+
+
+router.get('/', async (req, res) => {
     const data = {
         title: 'ECHOPRIX',
     };
 
+    const titre = 'XBOX ONE Farming Simulator 17 Jeux | Game'
+    const description = ''
+
+
+    const pythonProcess = spawn('python', ['server/python_scripts/categotizer.py', titre, description]);
+
+    pythonProcess.stdout.on('data', (data) => {
+        const outputFromPython = data.toString().trim();
+        console.log(`Output from Python script: ${outputFromPython}`);
+        // Handle the output from Python script (e.g., send it in the response)
+    });
+
     res.render('accueil', data);
 });
+
+
+
+
 
 router.get('/publications', async (req, res) =>{
     try {
@@ -79,7 +98,6 @@ function insertUserData (){
             lastName: "Ilyes",
             email: "ilyBel@echoprix.com",
             password: "Yelta"
-
         }
     ])
 }
