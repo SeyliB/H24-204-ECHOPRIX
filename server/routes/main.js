@@ -14,18 +14,6 @@ router.get('/', async (req, res) => {
         title: 'ECHOPRIX',
     };
 
-    const titre = 'XBOX ONE Farming Simulator 17 Jeux | Game'
-    const description = ''
-
-
-    const pythonProcess = spawn('python', ['server/python_scripts/categotizer.py', titre, description]);
-
-    pythonProcess.stdout.on('data', (data) => {
-        const outputFromPython = data.toString().trim();
-        console.log(`Output from Python script: ${outputFromPython}`);
-        // Handle the output from Python script (e.g., send it in the response)
-    });
-
     res.render('accueil', data);
 });
 
@@ -91,6 +79,19 @@ router.post('/login', async (req, res) =>{
 
 })
 
+function getPostCategory(title,description,callback){
+    const pythonScript = spawn('python', ['server/python_scripts/categotizer.py', title, description]);
+
+
+    pythonScript.stdout.on('data', (data) => {
+        //En faite ca lit le output dans la console de ce qui a ete ecris par le prog python
+       const category = data.toString().trim();
+        callback(category);
+    });
+
+
+}
+
 function insertUserData (){
     User.insertMany([
         {
@@ -102,20 +103,35 @@ function insertUserData (){
     ])
 }
 
-function insertPostData (){
-    Post.insertMany([
-        {
-            title: "OnePiece Tome 109",
-            description: "EggHead ",
-            adresse: "Rue de OnePiece",
-            price: 50,
-            image: fs.readFileSync('public/images/LOGO.png'),
-            vues: 0
-        }
-    ])
+async function insertPostData(title, description, adresse, price, image) {
+    
+        //Les callbacks c'est op quand on a besoin d'attendre qu'une tache s'execute
+        const category = await new Promise((resolve, reject) => {
+            getPostCategory(title, description, (category) => {
+                resolve(category); 
+            });
+        });
+
+
+        // Insert post data into the database
+        const result = await Post.insertMany([
+            {
+                title: title,
+                description: description,
+                adresse: adresse,
+                price: price,
+                category: category, // Use the category obtained from the callback
+                image: fs.readFileSync(image), // Use the read image data
+                vues: 0
+            }
+        ]);
+        
+        console.log("Data successfully sent");
+
 }
 
 // insertUserData();
-// insertPostData();
+insertPostData("Console de jeux vidéo", "Offre des heures de divertissement",
+"2221 rue de Bdeb",600,'public/images/LOGO.png');
 
 module.exports = router;
