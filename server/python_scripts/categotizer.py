@@ -18,7 +18,7 @@ english_translated_text = translated_text[0]['translation_text']
 
 
 classifier = pipeline("zero-shot-classification")
-
+ 
 res = classifier(
     translated_text[0]['translation_text'],
     candidate_labels=["Video Games", "Cars", "Vegetation", "Home Appliances", "Fashion Accessories", "Sports Equipment", "Art Supplies", "Books", "Pet Supplies", "Furniture", "Electronics", "Jewelry", "Toys", "Health & Beauty Products", "Kitchenware", "Outdoor Gear", "Musical Instruments", "Fitness Equipment", "Tools & Hardware", "Office Supplies"],

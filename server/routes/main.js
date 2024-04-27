@@ -17,15 +17,11 @@ router.get('/', async (req, res) => {
     res.render('accueil', data);
 });
 
-
-
-
-
 router.get('/publications', async (req, res) =>{
     try {
         var page = req.session.test || 1;
         req.session.test = page+1
-        const limit = 2;
+        const limit = 5;
         const skip = (page - 1) * limit;
         
         //La ca spawn 5 par 5
@@ -44,13 +40,12 @@ router.get('/connection', (req, res) =>{
 router.get('/recherche', (req, res) =>{
 
     const data = {
-        email: req.session.user.lastName
+        email: req.session.user._id
     }
     res.render('recherche', data);
 })
 
 router.post('/login', async (req, res) =>{
-
     try {
         //Recuperer les informations du form
         const {email, password} = req.body;
@@ -62,7 +57,6 @@ router.post('/login', async (req, res) =>{
 
         //conditions pour se connecter
         if (existingUser && existingUser.password.toLowerCase() === password.toLowerCase()) {
-            req.session.email = req.body.email;
             req.session.user = existingUser;
             res.redirect('/'); 
         } else {
@@ -79,6 +73,20 @@ router.post('/login', async (req, res) =>{
 
 })
 
+router.post('/signup', async (req, res) =>{
+    const {firstName, lastName, adresse, email, password, image} = req.body;
+    
+    const existingUser = await User.findOne({ email }); 
+
+
+    if (existingUser) {
+        console.log("CET EMAIL A DEJA ETE UTILISé POUR CREER UN COMPTE")
+    }else{
+        insertUserData(firstName, lastName, adresse, email, password, image);
+    }
+
+})
+
 function getPostCategory(title,description,callback){
     const pythonScript = spawn('python', ['server/python_scripts/categotizer.py', title, description]);
 
@@ -92,13 +100,14 @@ function getPostCategory(title,description,callback){
 
 }
 
-function insertUserData (){
+function insertUserData (firstName, lastName, adresse, email, password, image){
     User.insertMany([
         {
-            firstName: "Belhaddad",
-            lastName: "Ilyes",
-            email: "ilyBel@echoprix.com",
-            password: "Yelta"
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            image: fs.readFileSync(image)
         }
     ])
 }
@@ -125,13 +134,12 @@ async function insertPostData(title, description, adresse, price, image) {
                 vues: 0
             }
         ]);
-        
+
         console.log("Data successfully sent");
 
 }
 
 // insertUserData();
-insertPostData("Console de jeux vidéo", "Offre des heures de divertissement",
-"2221 rue de Bdeb",600,'public/images/LOGO.png');
+//insertPostData("Bureau de classe", "un eleve qui a changer d'ecole a oublier son bureau","2221 rue de Bdeb",600,'public/images/LOGO.png');
 
 module.exports = router;
