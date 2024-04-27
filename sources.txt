@@ -1,5 +1,7 @@
 https://www.youtube.com/watch?v=WbnCll6vvw4
 
 https://www.youtube.com/watch?v=QEaBAZQCtwE
-    vm: https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
-    transormers et pytorch: https://huggingface.co/docs/transformers/installation
+    vm : https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
+    transormers et pytorch : https://huggingface.co/docs/transformers/installation
+
+Socket.io : https://www.youtube.com/watch?v=ZKEqqIO7n-k
