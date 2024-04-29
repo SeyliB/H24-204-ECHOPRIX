@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(rgba(0, 190, 255, 1), rgba(0, 190, 255, 0.5));
+    background: rgb(0, 150, 200);
 }
 
 .banner {
@@ -13,13 +13,20 @@ body {
     height: 100vh;
 }
 
-.navbar {
+.web-bar {
     width: 100%;
     height: 20px;
     margin: auto;
     padding: 20px 0;
     background: white;
     position: fixed;
+}
+
+.nav-bar {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -71,20 +78,20 @@ body {
     border: 2px solid rgb(0, 190, 255);
 }
 
-.navbar ul li {
+li {
     list-style: none;
     display: inline-block;
     margin: 0 20px;
     position: relative;
 }
 
-.navbar ul li a {
+a {
     text-decoration: none;
     color: rgba(0, 190, 255);
     text-transform: uppercase;
 }
 
-.navbar ul li::after {
+li::after {
     content: "";
     width: 0%;
     height: 2px;
@@ -96,7 +103,7 @@ body {
     border-radius: 10px;
 }
 
-.navbar ul li:hover::after {
+li:hover::after {
     width: 100%;
 }
 
