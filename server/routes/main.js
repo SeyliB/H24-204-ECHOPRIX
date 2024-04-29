@@ -139,7 +139,15 @@ async function insertPostData(title, description, adresse, price, image) {
 
 }
 
+
 // insertUserData();
 //insertPostData("Bureau de classe", "un eleve qui a changer d'ecole a oublier son bureau","2221 rue de Bdeb",600,'public/images/LOGO.png');
+
+
+async function addView(id){
+    const currentPost = await User.findOne({ id }); 
+    currentPost.vues++;
+}
+
 
 module.exports = router;
