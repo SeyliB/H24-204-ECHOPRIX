@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         title: 'ECHOPRIX',
     };
 
-    res.render('accueil', data);
+    res.render('home', data);
 });
 
 router.get('/publications', async (req, res) =>{
@@ -73,7 +73,13 @@ router.post('/login', async (req, res) =>{
 
 })
 
-router.post('/signup', async (req, res) =>{
+router.get('/sign-in', async (req, res) =>{
+    res.render('sign-in');
+
+
+})
+
+router.post('/sign-in', async (req, res) =>{
     const {firstName, lastName, adresse, email, password, image} = req.body;
     
     const existingUser = await User.findOne({ email }); 

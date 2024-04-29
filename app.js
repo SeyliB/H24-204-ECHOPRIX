@@ -22,7 +22,7 @@ app.use(session({
 }));
 
 // Set 'views' directory for EJS templates
-app.set('views', path.join(__dirname, 'public', 'views'));
+app.set('views', path.join(__dirname, 'public', 'ejs'));
 app.set('view engine', 'ejs');
     
 app.use('/', require('./server/routes/main'))
