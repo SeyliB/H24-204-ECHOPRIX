@@ -72,24 +72,25 @@ router.post('/login', async (req, res) =>{
 
 
 })
-
+    
 router.get('/sign-in', async (req, res) =>{
     res.render('sign-in');
-
-
 })
 
 router.post('/sign-in', async (req, res) =>{
-    const {firstName, lastName, adresse, email, password, image} = req.body;
+    const {firstName, lastName, adresse, email, password, image} = await req.body;
     
     const existingUser = await User.findOne({ email }); 
 
+    console.log(image)
 
     if (existingUser) {
         console.log("CET EMAIL A DEJA ETE UTILISé POUR CREER UN COMPTE")
     }else{
         insertUserData(firstName, lastName, adresse, email, password, image);
     }
+
+    res.redirect('/home');
 
 })
 
@@ -111,6 +112,7 @@ function insertUserData (firstName, lastName, adresse, email, password, image){
         {
             firstName: firstName,
             lastName: lastName,
+            adresse: adresse,
             email: email,
             password: password,
             image: fs.readFileSync(image)
