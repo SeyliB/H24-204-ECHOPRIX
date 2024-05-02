@@ -6,6 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+
 const connectDB = require('./server/configuration/database');
 
 //Connect to DataBase
