@@ -11,24 +11,13 @@
     <body>
 
         <div class="container">
-            <% data.forEach(post =>{ %>
+            <% for (let i = 0; i < data.length; i++) { %>
                 <div class="item">
-                    <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
-                    <%= post.title %> 
+                    <img src="data:image/jpeg;base64,<%= data[i].image.toString('base64') %>" alt="Image">
+                    <p><%= data[i].title %> </p>
+                    <p><%= timers[i] %> </p>
                 </div>
-                <div class="item">
-                    <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
-                    <%= post.title %> 
-                </div>
-                <div class="item">
-                    <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
-                    <%= post.title %> 
-                </div>
-                <div class="item">
-                    <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
-                    <%= post.title %> 
-                </div>
-            <% }) %>
+            <% } %>
         </div>
 
         <script src="css/test.js"></script> 

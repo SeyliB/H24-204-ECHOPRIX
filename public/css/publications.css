@@ -11,8 +11,8 @@ body {
 /* Updated CSS for container and items */
 /* Style for the scrollable container */
 .container {
-    width: 300px; /* Set the desired width of the scrollable container */
-    height: 200px; /* Set the desired height of the scrollable container */
+    width: 800px; /* Set the desired width of the scrollable container */
+    height: 600px; /* Set the desired height of the scrollable container */
     border: 1px solid #ccc; /* Optional: Add border for visual clarity */
     overflow: auto; /* Enable scrolling when content overflows */
     padding: 10px; /* Optional: Add padding inside the scrollable container */
