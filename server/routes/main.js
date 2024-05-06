@@ -6,6 +6,7 @@ const fs = require('fs');
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 const { spawn } = require('child_process');
+const { Binary } = require('mongodb');
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
@@ -58,13 +59,12 @@ router.post('/login', async (req, res) =>{
         //conditions pour se connecter
         if (existingUser && existingUser.password.toLowerCase() === password.toLowerCase()) {
             req.session.user = existingUser;
-            res.redirect('/'); 
+            res.redirect('/test'); 
         } else {
             res.redirect('/login');
         }
         }else{
-            res.redirect('/login');
-
+            res.redirect('/login');//////////////////////////////////////////////////////////////////// /login
         }
     } catch (error) {
         console.log(error);
@@ -97,6 +97,7 @@ router.post('/sign-in', async (req, res) =>{
         console.log("CET EMAIL A DEJA ETE UTILISé POUR CREER UN COMPTE")
     }else{
         insertUserData(firstName, lastName, adresse, email, password, image);
+        createUserSession(req, firstName, lastName, adresse, email, password, image)
     }
 
     res.redirect('test');
@@ -104,11 +105,16 @@ router.post('/sign-in', async (req, res) =>{
 })
 
 router.get('/test', (req, res) =>{
-    const data = {
-        imageUrl: req.session.iconProfile
-    }
 
-    console.log(data.imageUrl);
+    const buffer = Buffer.from(req.session.user.image, 'base64');
+    // Create a Binary object using the Binary constructor with new
+    const binaryData = new Binary(buffer, Binary.SUBTYPE_BYTE_ARRAY);
+
+    // Construct the data object to pass to the view
+    const data = {
+        image: binaryData
+    };
+
 
     res.render('test', {data})
 })
@@ -164,6 +170,20 @@ async function insertPostData(title, description, adresse, price, image) {
 
         console.log("Data successfully sent");
 
+}
+
+function createUserSession(req, firstName, lastName, adresse, email, password, image){
+    
+    var userData = {
+        firstName: firstName,
+        lastName:  lastName,
+        adresse: adresse,
+        email: email,
+        password: password,
+        image: image
+    }
+
+    req.session.user = userData
 }
 
 

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const fs = require('fs');
+
 
 const Schema = mongoose.Schema;
 
@@ -21,6 +23,7 @@ const UserSchema = new Schema({
     },
     image: {
         type: Buffer,
+        default: fs.readFileSync("public/images/profile.jpg"),
         required: true
     },
     createdAt: {
