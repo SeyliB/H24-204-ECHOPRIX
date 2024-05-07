@@ -128,6 +128,11 @@ router.get('/test', (req, res) =>{
     res.render('test', {data})
 })
 
+router.post('/sendPost', async (req, res)=>{
+    const {title, description, adresse, price, images} = await req.body;
+    insertPostData(title, description, adresse, price, images)
+})
+
 function getPostCategory(title,description,callback){
     const pythonScript = spawn('python', ['server/python_scripts/categotizer.py', title, description]);
 
@@ -165,7 +170,7 @@ function insertUserData (firstName, lastName, adresse, email, password, image){
     ])
 }
 
-async function insertPostData(title, description, adresse, price, image) {
+async function insertPostData(title, description, adresse, price, images) {
     
         //Les callbacks c'est op quand on a besoin d'attendre qu'une tache s'execute
         const category = await new Promise((resolve, reject) => {
@@ -174,6 +179,15 @@ async function insertPostData(title, description, adresse, price, image) {
             });
         });
 
+        let imagesBuffered = []
+
+        for (let i = 0; i < images.length; i++){
+            let imageData = {
+                data: fs.readFileSync(images[i]), // Provide the image data as a Buffer
+                contentType: 'image' // Specify the content type of the image
+            };
+            imagesBuffered.push(imageData);
+        }
 
         // Insert post data into the database
         const result = await Post.insertMany([
@@ -183,7 +197,8 @@ async function insertPostData(title, description, adresse, price, image) {
                 adresse: adresse,
                 price: price,
                 category: category, // Use the category obtained from the callback
-                image: fs.readFileSync(image), // Use the read image data
+                // images: fs.readFileSync(image), // Use the read image data
+                images: imagesBuffered, // Use the read image data
                 vues: 0
             }
         ]);
@@ -252,8 +267,9 @@ async function createPostTimersArray(posts, callback){
     return timers
 }
 
+const images = ["public/images/LOGO.png", "public/images/profile.jpg"]
 
-insertPostData("Taha3", "ne sait pas quand le train arrive","2221 rue de Bdeb",600,'public/images/LOGO.png');
+insertPostData("Taha3", "ne sait pas quand le train arrive","2221 rue de Bdeb",600,images);
 
 
 async function addView(id){
