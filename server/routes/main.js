@@ -42,7 +42,8 @@ router.get('/test', (req, res) =>{
 
     // Construct the data object to pass to the view
     const data = {
-        image: binaryData
+        image: binaryData,
+        user: req.session.user
     };
 
 

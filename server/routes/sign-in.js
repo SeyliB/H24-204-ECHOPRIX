@@ -13,7 +13,9 @@ router.post('/sign-in', async (req, res) =>{
 
     const image = await req.session.iconProfile;
     if (existingUser) {
-        console.log("CET EMAIL A DEJA ETE UTILISé POUR CREER UN COMPTE")
+        const message = "CET EMAIL A DEJA ETE UTILISé POUR CREER UN COMPTE";
+        console.log(message)
+        res.render('sign-in')
     }else{
         insertUserData(firstName, lastName, adresse, email, password, image);
         createUserSession(req, firstName, lastName, adresse, email, password, image)

@@ -32,4 +32,6 @@ const UserSchema = new Schema({
     }
 })
 
+//Ajouter les posts de l'utilisateur (un array => meme systeme)
+
 module.exports = mongoose.model('User', UserSchema);

@@ -6,7 +6,9 @@
     <title>Simple EJS Example</title>
 </head>
 <body>
-    <h1>TEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSTTTTT!</h1>
+    <h1><%= data.user.firstName %>  <%= data.user.lastName %></h1>
+    <h1><%= data.user.email %> | <%= data.user.password %></h1>
     <img src="data:image/jpeg;base64, <%= data.image.toString('base64') %>" alt="User Image" style="max-width: 300px; height: auto;">
+    <h1><%= data.user.createdAt %></h1>
 </body>
 </html>
