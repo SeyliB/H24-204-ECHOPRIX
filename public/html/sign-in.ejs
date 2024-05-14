@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/connection.css">
+        <title> COMPTE </title>
+    </head>
+
+    <body>
+        <div class="banner">
+            <div class="navbar">
+                <img src="images/logo.png" class="logo">
+            </div>
+            <div class="wrapper">
+                <form action="sign-in" method="POST">
+                    <div class="row">
+                        <div class="input-section">
+                            <h1>Sign in</h1>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="icon-section">
+                            <img class="icon" src="images/profile.jpg" id="icon-profile">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <label class="icon-label" for="icon-file"><span></span>Upload</label>
+                    </div>
+                    <input class="icon-button" type="file" accept="image/jpeg, image/jpg" id="icon-file">
+                    <div class="row">
+                        <div class="input-section">
+                            <h2>First name</h2>
+                            <input class="input-text" type="text">
+                            <span></span>
+                        </div>
+                        <div class="input-section">
+                            <h2>Last name</h2>
+                            <input class="input-text" type="text">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-section">
+                            <h2>Email</h2>
+                            <input class="input-text" type="text">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-section">
+                            <h2>Password</h2>
+                            <input class="input-text" type="password">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-section">
+                            <button class="submit" type="submit"><span></span>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="java-script/sign-in.js"></script>
+    </body>
+
+</html>

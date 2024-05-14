@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            ECHOPRIX
+        </title>
+        <link rel="stylesheet" href="/css/login.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <a class="logo" href="/html/home.html">ECHOPRIX</a>
+                <form action="search" method="POST">
+                    <div class="search-bar">
+                        <img class="search-icon" src="/images/search.png">
+                        <input class="search-input" type="search" placeholder="Rechercher">
+                    </div>
+                </form>
+                <ul>
+                    <li><a href="/html/home.html"><span></span>Acceuil</a></li>
+                    <li><a href="/html/publications.html"><span></span>Publications</a></li>
+                    <li><a href="/html/creation.html"><span></span>Créer</a></li>
+                    <li>
+                        <div onclick="location.href='/html/login.html'" class="profile-wrapper" id="profile-wrapper">
+                            <h1>Taha</h1>
+                            <div class="icon-wrapper">
+                                <img class="icon" src="/images/profile.jpg">
+                            </div>
+                            <span></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="banner">
+            <form class="login-form" action="login">
+                <h1>Connection</h1>
+                <div class="login-input">
+                    <h1>Email</h1>
+                    <div class="login-input-box">
+                        <input class="login-input-text" type="email">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="login-input">
+                    <h1>Mot de passe</h1>
+                    <div class="login-input-box">
+                        <input class="login-input-text" type="password">
+                        <span></span>
+                    </div>
+                </div>
+                <button type="submit">Se connecter</button>
+                <span class="line-break"></span>
+                <button type="button" onclick="location.href='/html/sign-in.html'">Créer un compte</button>
+            </form>
+        </section>
+    </body>
+</html>

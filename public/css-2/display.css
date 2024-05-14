@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+    background-color: rgb(20, 20, 20);
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(20, 20, 20);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: 0.5s;
+}
+
+header .header-content {
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+header .header-content .logo {
+    flex: 1;
+    color: white;
+    font-style: italic;
+    font-size: 2em;
+    font-weight: 700px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+header .header-content form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .header-content form .search-bar {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    overflow: hidden;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within {
+    border: 1px solid white;
+}
+
+header .header-content form .search-bar .search-icon {
+    width: 0%;
+    height: 100%;
+    margin-right: 10px;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-icon {
+    width: auto;
+}
+
+header .header-content form .search-bar .search-input {
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-input {
+    color: white;
+}
+
+header .header-content form .search-bar .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.1);
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-input::placeholder {
+    color: white;
+}
+
+header .header-content ul {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+header .header-content ul li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+header .header-content ul li a {
+    position: relative;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+header .header-content ul li a span {
+    position: absolute;
+    width: 0;
+    height: 3px;
+    left: 100%;
+    bottom: -8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+header .header-content ul li a:hover span {
+    left: 0;
+    width: 100%;
+}
+
+header .header-content ul li .profile-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+header .header-content ul li .profile-wrapper h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+header .header-content ul li .profile-wrapper .icon-wrapper {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+header .header-content ul li .profile-wrapper .icon-wrapper .icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+header .header-content ul li .profile-wrapper span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: transparent;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+header .header-content ul li .profile-wrapper:hover span {
+    width: calc(100% + 10px);
+    height: calc(100% + 6px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px 10px 160px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+}
+
+.banner .line-bar {
+    position: fixed;
+    width: 150px;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+}
+
+.banner .publication-wrapper {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.banner .publication-wrapper .display-wrapper {
+    position: relative;
+    width: 530px;
+    height: 300px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.25s;
+}
+
+.banner .publication-wrapper .display-wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+}
+
+.banner .publication-wrapper .display-wrapper .display {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.banner .publication-wrapper h1 {
+    color: white;
+}
+
+.banner .publication-wrapper .publication-info-wrapper {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.banner .publication-wrapper .publication-info-wrapper h1 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 15px;
+}
+
+.banner .publication-wrapper .publication-info-wrapper .publication-statistic-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-right: 140px;
+}
+
+.banner .publication-wrapper .publication-info-wrapper .publication-statistic-wrapper h1 {
+    margin: 0 4px;
+}
+
+.banner .publication-wrapper .publication-title {
+    width: 100%;
+    height: max-content;
+    font-size: 40px;
+}
+
+.banner .publication-wrapper .publication-description-wrapper {
+    width: 100%;
+    height: max-content;
+    padding: 10px 0;
+}
+
+.banner .publication-wrapper .publication-description-wrapper .publication-description-title {
+    color: white;
+    font-size: 30px;
+}
+
+.banner .publication-wrapper .publication-description-wrapper .publication-description {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 15px;
+}
+
+.banner .publisher-wrapper {
+    position: relative;
+    flex: 1;
+    height: 100%;
+}
+
+.banner .publisher-wrapper .publisher-banner {
+    position: absolute;
+    width: 325px;
+    height: 425px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 10px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.banner .publisher-wrapper .publisher-banner .profile-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    overflow: hidden;
+    transition: 0.25s;
+}
+
+.banner .publisher-wrapper .publisher-banner .profile-wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+}
+
+.banner .publisher-wrapper .publisher-banner .profile-wrapper .profile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.banner .publisher-wrapper .publisher-banner .publisher-first-name {
+    font-size: 25px;
+}
+
+.banner .publisher-wrapper .publisher-banner .publisher-last-name {
+    font-size: 15px;
+}
+
+.banner .publisher-wrapper .publisher-banner .publisher-info-wrapper {
+    width: 100%;
+    height: max-content;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.banner .publisher-wrapper .publisher-banner .publisher-info-wrapper .publisher-info-title {
+    color: white;
+    font-size: 25px;
+}
+
+.banner .publisher-wrapper .publisher-banner .publisher-info-wrapper .publisher-info {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 15px;
+}

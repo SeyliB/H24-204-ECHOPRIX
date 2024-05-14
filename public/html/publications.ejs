@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/publications.css">
+        <title>PUBLICATIONS</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <% data.forEach(post =>{ %>
+                <div class="item">
+                    <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
+                    <%= post.title %> 
+                </div>
+            <% }) %>
+
+        </div>
+        
+
+        <!-- <ul> 
+        <% data.forEach(post =>{ %>
+            <li> <%= post.title %> </li>
+            <ul>
+                <li>Description: <%= post.description %> </li>
+                <li>Adresse: <%= post.adresse %> </li>
+                <li>Prix: <%= post.price %> $ </li>
+                <li>Image: <img src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Image">
+                </li>
+                <li>Vues: <%= post.vues %> </li>
+                <li>Date: <%= post.createdAt %> </li>
+            </ul>
+        <% }) %>
+        </ul> -->
+
+    </body>
+
+</html>

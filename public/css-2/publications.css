@@ -1,0 +1,386 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+    background-color: rgb(20, 20, 20);
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(20, 20, 20);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: 0.5s;
+}
+
+header .header-content {
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+header .header-content .logo {
+    flex: 1;
+    color: white;
+    font-style: italic;
+    font-size: 2em;
+    font-weight: 700px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+header .header-content form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .header-content form .search-bar {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    overflow: hidden;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within {
+    border: 1px solid white;
+}
+
+header .header-content form .search-bar .search-icon {
+    width: 0%;
+    height: 100%;
+    margin-right: 10px;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-icon {
+    width: auto;
+}
+
+header .header-content form .search-bar .search-input {
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-input {
+    color: white;
+}
+
+header .header-content form .search-bar .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.1);
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-input::placeholder {
+    color: white;
+}
+
+header .header-content ul {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+header .header-content ul li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+header .header-content ul li a {
+    position: relative;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+header .header-content ul li a span {
+    position: absolute;
+    width: 0;
+    height: 3px;
+    left: 100%;
+    bottom: -8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+header .header-content ul li a:hover span {
+    left: 0;
+    width: 100%;
+}
+
+header .header-content ul li .profile-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+header .header-content ul li .profile-wrapper h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+header .header-content ul li .profile-wrapper .icon-wrapper {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+header .header-content ul li .profile-wrapper .icon-wrapper .icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+header .header-content ul li .profile-wrapper span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: transparent;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+header .header-content ul li .profile-wrapper:hover span {
+    width: calc(100% + 10px);
+    height: calc(100% + 6px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px 0 150px;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.banner .line-bar {
+    position: fixed;
+    width: 150px;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+}
+
+.banner .publication-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.banner .publication-wrapper .publication-list-wrapper {
+    width: 100%;
+    height: 300px;
+    padding: 10px 10px;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list-title {
+    color: white;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list::-webkit-scrollbar {
+    visibility: hidden;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication {
+    position: relative;
+    width: 300px;
+    height: max-content;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 10px;
+    transition: 0.25s;
+    z-index: -1;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication:hover span {
+    background-color: rgba(255, 255, 255, 0.1);
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .display-wrapper {
+    position: relative;
+    width: 300px;
+    height: 170px;
+    border-radius: 10px;
+    transition: 0.25s;
+    overflow: hidden;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .display-wrapper .display {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info {
+    width: 100%;
+    height: 80px;
+    padding: 5px 0;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: row;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .profile-wrapper {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    margin-right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .profile-wrapper .profile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description {
+    flex: 9;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    color: white;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-title-wrapper {
+    width: 100%;
+    height: 20px;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-title-wrapper .publication-title {
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper .publication-statistic {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper .publication-statistic h3 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper .publication-price {
+    color: white;
+    font-size: 14px;
+}
