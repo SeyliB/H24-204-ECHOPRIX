@@ -17,6 +17,7 @@
                 </div>
             </div>
             <div class="wrapper">
+                
                 <form action="sign-in" method="POST">
                     <div class="row">
                         <div class="input-section">
@@ -31,30 +32,37 @@
                     <div class="column">
                         <label class="icon-label" for="icon-file"><span></span>Upload</label>
                     </div>
-                    <input class="icon-button" type="file" accept="image/jpeg, image/jpg" id="icon-file">
+                    <input class="icon-button" name="image" type="file" accept="image/jpeg, image/jpg" id="icon-file">
                     <div class="row">
                         <div class="input-section">
                             <h2>First name</h2>
-                            <input class="input-text" type="text">
+                            <input class="input-text" name="firstName" type="text">
                             <span></span>
                         </div>
                         <div class="input-section">
                             <h2>Last name</h2>
-                            <input class="input-text" type="text">
+                            <input class="input-text" name="lastName" type="text">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-section">
+                            <h2>Adresse</h2>
+                            <input class="input-text" name="adresse" type="text">
                             <span></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-section">
                             <h2>Email</h2>
-                            <input class="input-text" type="text">
+                            <input class="input-text" name="email" type="text">
                             <span></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-section">
                             <h2>Password</h2>
-                            <input class="input-text" type="password">
+                            <input class="input-text" name="password" type="password">
                             <span></span>
                         </div>
                     </div>
@@ -64,9 +72,9 @@
                         </div>
                     </div>
                 </form>
+                <script src="java-script/sign-in.js"></script>
             </div>
         </div>
-        <script src="java-script/sign-in.js"></script>
     </body>
 
 </html>

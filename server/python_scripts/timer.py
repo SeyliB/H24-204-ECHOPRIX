@@ -51,6 +51,8 @@ def format_time_ago(timestamp):
         return f"{years_difference} year{'s' if years_difference != 1 else ''} ago"
 
 # Example usage:
-timestamp = '2024-04-29T18:04:30.782+00:00'
+timestamp = sys.argv[1]
+# timestamp = "2024-05-06T20:19:07.987+00:00"
 formatted_time_ago = format_time_ago(timestamp)
 print(formatted_time_ago)  # Output: "2 years ago"
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/publications.css">
+        <title>PUBLICATIONS</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <% for (let i = 0; i < data.length; i++) { %>
+                <div class="item">
+                    <img src="data:image/jpeg;base64,<%= data[i].images[1].data.toString('base64') %>" alt="Image">
+                    <p><%= data[i].title %> </p>
+                    <p><%= timers[i] %> </p>
+                </div>
+            <% } %>
+        </div>
+
+        <script src="css/test.js"></script> 
+        
+
+    </body>
+
+</html>

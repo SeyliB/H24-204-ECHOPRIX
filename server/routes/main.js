@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
-const Post = require('../models/Post');
-const fs = require('fs');
-const { spawn } = require('child_process');
-const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
+const { Binary } = require('mongodb');
+const loginRouter = require('./login')
+const signInRouter = require('./sign-in')
+const publicationsRouter = require('./publications')
 
 router.get('/', async (req, res) => {
     const data = {
@@ -17,143 +15,39 @@ router.get('/', async (req, res) => {
     res.render('home', data);
 });
 
-router.get('/publications', async (req, res) =>{
-    try {
-        var page = req.session.test || 1;
-        req.session.test = page+1
-        const limit = 5;
-        const skip = (page - 1) * limit;
-        
-        //La ca spawn 5 par 5
+router.get('/login', loginRouter);
+router.post('/login', loginRouter);
 
-        const data = await Post.find().skip(skip).limit(limit);
-        res.render('publications', {data});
+router.get('/sign-in', signInRouter);
+router.post('/sign-in', signInRouter);
+
+router.get('/publications', publicationsRouter);
+router.post('/publications', publicationsRouter);
+
+router.post('/uploadImage', upload.single('image'), (req,res) =>{
+    try {
+        req.session.iconProfile = req.file.buffer; // Store the image buffer in a global variable
+        res.json({ message: 'Image uploaded successfully' });
     } catch (error) {
-        console.log(error);
+        console.error('Error uploading image:', error);
+        res.status(500).json({ error: 'Failed to upload image' });
     }
 })
 
-router.get('/connection', (req, res) =>{
-    res.render('connection');
-})
+router.get('/test', (req, res) =>{
 
-router.get('/recherche', (req, res) =>{
+    const buffer = Buffer.from(req.session.user.image, 'base64');
+    // Create a Binary object using the Binary constructor with new
+    const binaryData = new Binary(buffer, Binary.SUBTYPE_BYTE_ARRAY);
 
+    // Construct the data object to pass to the view
     const data = {
-        email: req.session.user._id
-    }
-    res.render('recherche', data);
+        image: binaryData,
+        user: req.session.user
+    };
+
+
+    res.render('test', {data})
 })
-
-router.post('/login', async (req, res) =>{
-    try {
-        //Recuperer les informations du form
-        const {email, password} = req.body;
-
-        //Check si email correspond aux contraintes
-        if (regexEmail.test(email)){
-        //Check si exist dans Mongo
-        const existingUser = await User.findOne({ email }); 
-
-        //conditions pour se connecter
-        if (existingUser && existingUser.password.toLowerCase() === password.toLowerCase()) {
-            req.session.user = existingUser;
-            res.redirect('/'); 
-        } else {
-            res.redirect('/connection');
-        }
-        }else{
-            res.redirect('/connection');
-
-        }
-    } catch (error) {
-        console.log(error);
-    }
-
-
-})
-
-router.get('/sign-in', async (req, res) =>{
-    res.render('sign-in');
-
-
-})
-
-router.post('/sign-in', async (req, res) =>{
-    const {firstName, lastName, adresse, email, password, image} = req.body;
-    
-    const existingUser = await User.findOne({ email }); 
-
-
-    if (existingUser) {
-        console.log("CET EMAIL A DEJA ETE UTILISé POUR CREER UN COMPTE")
-    }else{
-        insertUserData(firstName, lastName, adresse, email, password, image);
-    }
-
-})
-
-function getPostCategory(title,description,callback){
-    const pythonScript = spawn('python', ['server/python_scripts/categotizer.py', title, description]);
-
-
-    pythonScript.stdout.on('data', (data) => {
-        //En faite ca lit le output dans la console de ce qui a ete ecris par le prog python
-       const category = data.toString().trim();
-        callback(category);
-    });
-
-
-}
-
-function insertUserData (firstName, lastName, adresse, email, password, image){
-    User.insertMany([
-        {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            image: fs.readFileSync(image)
-        }
-    ])
-}
-
-async function insertPostData(title, description, adresse, price, image) {
-    
-        //Les callbacks c'est op quand on a besoin d'attendre qu'une tache s'execute
-        const category = await new Promise((resolve, reject) => {
-            getPostCategory(title, description, (category) => {
-                resolve(category); 
-            });
-        });
-
-
-        // Insert post data into the database
-        const result = await Post.insertMany([
-            {
-                title: title,
-                description: description,
-                adresse: adresse,
-                price: price,
-                category: category, // Use the category obtained from the callback
-                image: fs.readFileSync(image), // Use the read image data
-                vues: 0
-            }
-        ]);
-
-        console.log("Data successfully sent");
-
-}
-
-
-// insertUserData();
-//insertPostData("Bureau de classe", "un eleve qui a changer d'ecole a oublier son bureau","2221 rue de Bdeb",600,'public/images/LOGO.png');
-
-
-async function addView(id){
-    const currentPost = await User.findOne({ id }); 
-    currentPost.vues++;
-}
-
 
 module.exports = router;

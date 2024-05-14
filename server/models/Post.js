@@ -2,6 +2,17 @@ const mongoose = require(`mongoose`);
 
 const Schema = mongoose.Schema;
 
+const ImageSchema = new Schema({
+    data: {
+        type: Buffer,
+        required: true
+    },
+    contentType: {
+        type: String,
+        required: true
+    }
+});
+
 const PostSchema = new Schema({
     title:{
         type:String,
@@ -23,10 +34,7 @@ const PostSchema = new Schema({
         type:String,
         required: true
     },
-    image: {
-        type: Buffer,
-        required: true
-    },
+    images: [ImageSchema],
     vues:{
         type:Number,
         default:0
