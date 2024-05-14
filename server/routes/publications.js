@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
 const fs = require('fs');
-const multer = require('multer');
 const { spawn } = require('child_process');
 
 
