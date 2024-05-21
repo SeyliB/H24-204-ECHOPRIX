@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const { Binary } = require('mongodb');
 
 
 router.get('/login', (req, res) =>{
@@ -21,7 +22,8 @@ router.post('/login', async (req, res) =>{
         //conditions pour se connecter
         if (existingUser && existingUser.password.toLowerCase() === password.toLowerCase()) {
             req.session.user = existingUser;
-            res.redirect('/test'); 
+            req.session.connected = true;
+            res.redirect('/publications'); 
         } else {
             res.redirect('/login');
         }
@@ -34,5 +36,6 @@ router.post('/login', async (req, res) =>{
 
 
 })
+
 
 module.exports = router;

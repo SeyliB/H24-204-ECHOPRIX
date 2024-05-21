@@ -1,28 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/publications.css">
-        <title>PUBLICATIONS</title>
+        <title>
+            Publications
+        </title>
+        <link rel="stylesheet" href="/css/publications.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     </head>
-
     <body>
+        <% if (data.session.connected) { %>
+            <%- include('header_connected') %>
+        <% } else { %>
+            <%- include('header_visitor') %>
+        <% } %>
+        <div class="section-list">
 
-        <div class="container">
-            <% for (let i = 0; i < data.length; i++) { %>
-                <div class="item">
-                    <img src="data:image/jpeg;base64,<%= data[i].images[1].data.toString('base64') %>" alt="Image">
-                    <p><%= data[i].title %> </p>
-                    <p><%= timers[i] %> </p>
-                </div>
-            <% } %>
-        </div>
-
-        <script src="css/test.js"></script> 
         
+            <% data.categories.forEach(function(categorie, key) { %>
+                <% if(categorie.length > 0) {%>
+                <h1 class="publication-list-title"><%= key %></h1>
 
+                    <section class="splide slider" aria-labelledby="carousel-heading1">
+                        <div class="splide__track">
+                            
+                            <ul class="splide__list">
+                                <!-- Repeat list items for each slider -->
+                                
+                                <%categorie.forEach(function(post){ %>
+                                <li class="splide__slide">
+                                    <div class="banner">
+                                        <span class="line-bar"></span>
+                                        <div class="publication-wrapper banner">
+                                            <div class="publication-list-wrapper">
+                                                <div class="publication-list">
+                                                    <div class="publication" onclick="location.href='/display/<%= post.id%>'">
+                                                        <div class="display-wrapper">
+                                                        <img class="icon" src="data:image/jpeg;base64,<%= post.images.toString('base64') %>" alt=" ">
+                                                        </div>
+                                                        <div class="publication-info">
+                                                            <div class="profile-wrapper">
+                                                                <img class="profile" src="/images/profile.jpg">
+                                                            </div>
+                                                            <div class="publication-description">
+                                                                <div class="publication-title-wrapper">
+                                                                    <h2 class="publication-title"> <%= post.title%> </h2>
+                                                                </div>
+                                                                <div class="publication-statistic-wrapper">
+                                                                    <h3 class="publication-price">$<%= post.price%></h3>
+                                                                    <div class="publication-statistic">
+                                                                        <h3 class="publication-time"><%= post.posted%></h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% }); %>
+                                
+                                <!-- More list items as needed -->
+                            </ul>
+                           
+                        </div>
+                    </section>
+                    <% };%>
+            <% }); %>
+    
+    
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var splides = document.querySelectorAll('.splide');
+                splides.forEach(function(splide) {
+                    new Splide(splide, {
+                        width: "100%",
+                        perPage: 4,
+                        gap: "10px",
+                        type: "loop",
+                        autoplay: true,
+                        interval: 2500,
+                        lazyLoad: 'nearby',
+                        cover: true,
+                        drag: 'free',
+                        snap: true,
+                    }).mount();
+                });
+            });
+        </script>
     </body>
-
 </html>

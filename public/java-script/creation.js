@@ -1,7 +1,5 @@
-let image = document.getElementById("sign-in-profile-image");
-let file = document.getElementById("sign-in-profile-file");
-
-
+let image = document.getElementById("creation-media-image");
+let file = document.getElementById("creation-media-file");
 
 file.onchange = async function(event) {
 
@@ -16,7 +14,7 @@ file.onchange = async function(event) {
     formData.append('image', imageFile);
 
     try {
-        const response = await fetch('/uploadImage', {
+        const response = await fetch('/uploadImages', {
             method: 'POST',
             body: formData
         });
@@ -27,5 +25,3 @@ file.onchange = async function(event) {
         console.error('Error uploading image:', error);
     }
 };
-
-

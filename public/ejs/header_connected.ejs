@@ -1,0 +1,25 @@
+        <header>
+            <div class="header-content">
+                <a class="logo" href="/">ECHOPRIX</a>
+                <form action="search" method="POST">
+                    <div class="search-bar">
+                        <img class="search-icon" src="/images/search.png">
+                        <input class="search-input" type="search" placeholder="Rechercher">
+                    </div>
+                </form>
+                <ul>
+                    <li><a href="/"><span></span>Acceuil</a></li>
+                    <li><a href="publications"><span></span>Publications</a></li>
+                    <li><a href="creation"><span></span>Créer</a></li>
+                    <li>
+                        <div onclick="location.href='login'" class="profile-wrapper" id="profile-wrapper">
+                            <h1><%= data.session.user.firstName %>  <%= data.session.user.lastName %></h1>
+                            <div class="icon-wrapper">
+                                <img class="icon" src="data:image/jpeg;base64,<%= data.session.user.image.toString('base64') %>" alt=" ">
+                            </div>
+                            <span></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>

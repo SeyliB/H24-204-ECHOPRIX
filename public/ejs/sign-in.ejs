@@ -1,80 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html lang="en">
-    
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            ECHOPRIX
+        </title>
         <link rel="stylesheet" href="css/sign-in.css">
-        <title> COMPTE </title>
     </head>
-
     <body>
-        <div class="banner">
-            <div class="web-bar">
-                <div class="nav-bar">
-                    <img src="images/logo.png" class="logo">
+        <%- include('header_visitor') %>
+        <section class="banner">
+            <form class="sign-in-form" action="sign-in" method="POST">
+                <h1 class="sign-in-title">Création d'un compte</h1>
+                <div class="sign-in-profile">
+                    <div class="sign-in-profile-image-wrapper">
+                        <img class="sign-in-profile-image" src="" alt="" id="sign-in-profile-image">
+                        <h1>+</h1>
+                        <label class="sign-in-profile-label" for="sign-in-profile-file"></label>
+                    </div>
+                    <input class="sign-in-profile-file" type="file" accept="image/jpeg, image/jpg" id="sign-in-profile-file">
                 </div>
-            </div>
-            <div class="wrapper">
-                
-                <form action="sign-in" method="POST">
-                    <div class="row">
-                        <div class="input-section">
-                            <h1>Sign in</h1>
-                        </div>
+                <div class="sign-in-input">
+                    <h1>Prénom</h1>
+                    <div class="sign-in-input-box">
+                        <input class="sign-in-input-text" name="firstName" type="text">
+                        <span></span>
                     </div>
-                    <div class="column">
-                        <div class="icon-section">
-                            <img class="icon" src="images/profile.jpg" id="icon-profile">
-                        </div>
+                </div>
+                <div class="sign-in-input">
+                    <h1>Nom</h1>
+                    <div class="sign-in-input-box">
+                        <input class="sign-in-input-text" name="lastName" type="text">
+                        <span></span>
                     </div>
-                    <div class="column">
-                        <label class="icon-label" for="icon-file"><span></span>Upload</label>
+                </div>
+                <div class="sign-in-input">
+                    <h1>Email</h1>
+                    <div class="sign-in-input-box">
+                        <input class="sign-in-input-text" name="email" type="email">
+                        <span></span>
                     </div>
-                    <input class="icon-button" name="image" type="file" accept="image/jpeg, image/jpg" id="icon-file">
-                    <div class="row">
-                        <div class="input-section">
-                            <h2>First name</h2>
-                            <input class="input-text" name="firstName" type="text">
-                            <span></span>
-                        </div>
-                        <div class="input-section">
-                            <h2>Last name</h2>
-                            <input class="input-text" name="lastName" type="text">
-                            <span></span>
-                        </div>
+                </div>
+                <div class="sign-in-input">
+                    <h1>Mot de passe</h1>
+                    <div class="sign-in-input-box">
+                        <input class="sign-in-input-text" name="password" type="password">
+                        <span></span>
                     </div>
-                    <div class="row">
-                        <div class="input-section">
-                            <h2>Adresse</h2>
-                            <input class="input-text" name="adresse" type="text">
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-section">
-                            <h2>Email</h2>
-                            <input class="input-text" name="email" type="text">
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-section">
-                            <h2>Password</h2>
-                            <input class="input-text" name="password" type="password">
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-section">
-                            <button class="submit" type="submit"><span></span>Submit</button>
-                        </div>
-                    </div>
-                </form>
-                <script src="java-script/sign-in.js"></script>
-            </div>
-        </div>
+                </div>
+                <button type="submit">Créer le compte</button>
+                <span class="line-break"></span>
+                <button type="button" onclick="location.href='login'">Se connecter</button>
+            </form>
+        </section>
+        <script src="java-script/sign-in.js" ></script>
     </body>
-
 </html>

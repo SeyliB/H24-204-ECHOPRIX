@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            ECHOPRIX
+        </title>
+        <link rel="stylesheet" href="/css/display.css">
+    </head>
+    <body>
+        <% if (data.session.connected) { %>
+            <%- include('header_connected') %>
+        <% } else { %>
+            <%- include('header_visitor') %>
+        <% } %>
+        <section class="banner">
+            <span class="line-bar"></span>
+            <div class="publication-wrapper">
+                <h1 class="publication-title"><%= data.post.title%></h1>
+                <div class="publication-info-wrapper">
+                    <h1 class="publication-info"><%= data.post.price%>$</h1>
+                    <div class="publication-statistic-wrapper">
+                        <h1 class="publication-info"><%= data.post.vues%></h1>
+                        <h1 class="publication-info"><%= data.post.posted%></h1>
+                    </div>
+                </div>
+                <div class="display-wrapper">
+                    <img class="display" src="data:image/jpeg;base64,<%= data.post.images.toString('base64') %>" alt=" ">
+                </div>
+                <div class="publication-description-wrapper">
+                    <h1 class="publication-description-title">Description</h1>
+                    <h1 class="publication-description"><%= data.post.description%></h1>
+                </div>
+            </div>
+            <div class="publisher-wrapper">
+                <div class="publisher-banner">
+                    <div class="profile-wrapper">
+                        <img class="profile" src="/images/profile.jpg" alt="">
+                    </div>
+                    <h1 class="publisher-first-name">Ilyes</h1>
+                    <h1 class="publisher-last-name">Belhaddad</h1>
+                    <div class="publisher-info-wrapper">
+                        <h1 class="publisher-info-title">Email</h1>
+                        <h1 class="publisher-info">taha.khalfi.ob@gmail.com</h1>
+                    </div>
+                    <div class="publisher-info-wrapper">
+                        <h1 class="publisher-info-title">Adresse</h1>
+                        <h1 class="publisher-info"><%= data.post.adresse%></h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="/java-script/creation.js" ></script>
+    </body>
+</html>

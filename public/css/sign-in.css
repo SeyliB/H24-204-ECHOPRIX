@@ -1,216 +1,360 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
-    background: rgb(0, 150, 200);
-}
-
-.banner {
     width: 100%;
     height: 100vh;
-    background-size: cover;
-    background-position: center;
-    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+    background-color: rgb(20, 20, 20);
 }
 
-.web-bar {
-    width: 100%;
-    height: 20px;
-    margin: auto;
-    padding: 20px 0;
-    background: white;
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+header {
     position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(20, 20, 20);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: 0.5s;
 }
 
-.nav-bar {
+header .header-content {
     width: 100%;
-    height: 100%;
-    background: transparent;
-    position: relative;
+    height: 50px;
+    padding: 0 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 1000;
 }
 
-.logo {
-    width: 80px;
-    margin: 0 20px;
+header .header-content .logo {
+    flex: 1;
+    color: white;
+    font-style: italic;
+    font-size: 2em;
+    font-weight: 700px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+header .header-content form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .header-content form .search-bar {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    overflow: hidden;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within {
+    border: 1px solid white;
+}
+
+header .header-content form .search-bar .search-icon {
+    width: 0%;
+    height: 100%;
+    margin-right: 10px;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-icon {
+    width: auto;
+}
+
+header .header-content form .search-bar .search-input {
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-input {
+    color: white;
+}
+
+header .header-content form .search-bar .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.1);
+    transition: 0.25s;
+}
+
+header .header-content form .search-bar:focus-within .search-input::placeholder {
+    color: white;
+}
+
+header .header-content ul {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+header .header-content ul li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+header .header-content ul li a {
+    position: relative;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+header .header-content ul li a span {
+    position: absolute;
+    width: 0;
+    height: 3px;
+    left: 100%;
+    bottom: -8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+header .header-content ul li a:hover span {
+    left: 0;
+    width: 100%;
+}
+
+header .header-content ul li .profile-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s;
     cursor: pointer;
 }
 
-.wrapper {
-    width: 400px;
-    height: max-content;
-    padding: 40px;
-    background: rgb(0, 190, 255, 0.25);
-    border: 2px solid rgba(0, 190, 255);
-    border-radius: 20px;
+header .header-content ul li .profile-wrapper h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+header .header-content ul li .profile-wrapper .icon-wrapper {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+header .header-content ul li .profile-wrapper .icon-wrapper .icon {
     position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     left: 50%;
-    top: 50vh;
+    top: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
 
-form {
+header .header-content ul li .profile-wrapper span {
+    position: absolute;
     width: 100%;
     height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: transparent;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+header .header-content ul li .profile-wrapper:hover span {
+    width: calc(100% + 10px);
+    height: calc(100% + 6px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.banner .sign-in-form {
+    position: absolute;
+    width: 450px;
+    height: max-content;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 20px 30px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.row {
+.banner .sign-in-form .sign-in-title {
     width: 100%;
-    height: max-content;
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: left;
+    height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    text-transform: uppercase;
 }
 
-.column {
-    width: 100%;
+.banner .sign-in-form .sign-in-profile {
+    width: max-content;
     height: max-content;
-    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
-.input-section {
-    flex: 1;
-    margin: 0 10px;
+.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper {
     position: relative;
-    color: white;
-    position: relative;
-}
-
-.input-section h1 {
-    font-size: 36px;
-    text-align: center;
-}
-
-.input-section h2 {
-    font-size: 14px;
-    text-align: left;
-    margin-bottom: 5px;
-}
-
-.input-text {
-    width: 100%;
-    height: 20px;
-    background: transparent;
-    color: white;
-    border: none;
-    outline: none;
-    transition: 0.25s;
-}
-
-.input-section span {
-    width: 100%;
-    height: 2px;
-    background: rgba(0, 190, 255);
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    transition: 0.25s;
-}
-
-.input-section:focus-within span {
-    background: white;
-}
-
-.icon-section {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: 2px solid rgba(0, 190, 255);
-    overflow: hidden;
-    position: relative;
-}
-
-.icon {
-    width: 102%;
-    height: 102%;
-    object-fit: cover;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
-
-.icon-label {
-    display: block;
     width: 100px;
-    margin: 0 0 20px 0;
-    padding: 2px;
-    font-size: 14px;
-    text-transform: uppercase;
-    text-align: center;
-    background: transparent;
-    color: white;
-    border: 2px solid rgba(0, 190, 255);
-    border-radius: 20px;
-    transition: 0.25s;
-    cursor: pointer;
-    position: relative;
+    height: 100px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.25s;
+    margin: 10px;
 }
 
-.icon-label span {
+.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+}
+
+.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper .sign-in-profile-image {
     position: absolute;
-    width: 0;
+    width: 100%;
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(0, 190, 255);
-    transition: 0.25s;
+    object-fit: cover;
+    display: none;
     z-index: -1;
 }
 
-.icon-label:hover span {
+.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper h1 {
     width: 100%;
+    color: white;
+    text-align: center;
+    z-index: 5;
 }
 
-.column .icon-label:hover + .icon-section {
-    border: 2px solid rgb(0, 190, 255);
+.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper .sign-in-profile-label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 10;
 }
 
-.icon-button {
+.banner .sign-in-form .sign-in-profile .sign-in-profile-file {
     display: none;
 }
 
-.submit {
+.banner .sign-in-form .sign-in-profile h1 {
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.banner .sign-in-form .sign-in-input {
     width: 100%;
+    height: max-content;
+    padding: 10px 0;
+}
+
+.banner .sign-in-form .sign-in-input h1 {
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.banner .sign-in-form .sign-in-input .sign-in-input-box {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin: 5px 0;
+}
+
+.banner .sign-in-form .sign-in-input .sign-in-input-box .sign-in-input-text {
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 17px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.banner .sign-in-form .sign-in-input .sign-in-input-box span {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: -2px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.banner .sign-in-form button {
+    width: 150px;
     height: 30px;
-    padding: 3px 0;
-    font-size: 16px;
-    background: transparent;
+    margin: 15px 0;
     color: white;
     text-transform: uppercase;
-    border: 2px solid rgba(0, 190, 255);
-    border-radius: 20px;
-    transition: 0.25s;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.submit span {
-    position: absolute;
-    width: 0;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: rgba(0, 190, 255);
     transition: 0.25s;
-    z-index: -1;
 }
 
-.submit:hover span {
-    width: 100%;
+.banner .sign-in-form button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+}
+
+.banner .sign-in-form .line-break {
+    width: 80%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
 }

@@ -5,6 +5,10 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+img {
+    width: 100%;
+}
+
 body {
     width: 100%;
     height: 100vh;
@@ -198,163 +202,202 @@ header .header-content ul li .profile-wrapper:hover span {
 }
 
 .banner {
-    position: relative;
     width: 100%;
     height: 100%;
 }
 
-.banner .sign-in-form {
-    position: absolute;
-    width: 450px;
+.banner .line-bar {
+    /* position: fixed; */
+    /* width: 150px; */
+    /* height: 100vh; */
+    background-color: transparent;
+
+}
+
+.banner .publication-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+
+}
+
+.banner .publication-wrapper .publication-list-wrapper {
+    width: 100%;
+    height: 100%;
+    /* padding: 10px 10px; */
+    
+
+}
+
+.publication-list-title {
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list {
+    padding: 10px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list::-webkit-scrollbar {
+    visibility: hidden;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication {
+    position: relative;
+    width: 100%;
     height: max-content;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    padding: 20px 30px;
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.banner .sign-in-form .sign-in-title {
-    width: 100%;
-    height: 40px;
-    text-align: center;
-    color: white;
-    font-size: 25px;
-    text-transform: uppercase;
-}
-
-.banner .sign-in-form .sign-in-profile {
-    width: max-content;
-    height: max-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     transition: 0.25s;
-    margin: 10px;
-}
-
-.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 2px solid white;
-}
-
-.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper .sign-in-profile-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    object-fit: cover;
-    display: none;
     z-index: -1;
 }
 
-.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper h1 {
-    width: 100%;
-    color: white;
-    text-align: center;
-    z-index: 5;
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication:hover span {
+    background-color: rgba(255, 255, 255, 0.1);
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
 }
 
-.banner .sign-in-form .sign-in-profile .sign-in-profile-image-wrapper .sign-in-profile-label {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.banner .sign-in-form .sign-in-profile .sign-in-profile-file {
-    display: none;
-}
-
-.banner .sign-in-form .sign-in-profile h1 {
-    color: white;
-    font-size: 15px;
-    text-transform: uppercase;
-}
-
-.banner .sign-in-form .sign-in-input {
-    width: 100%;
-    height: max-content;
-    padding: 10px 0;
-}
-
-.banner .sign-in-form .sign-in-input h1 {
-    color: white;
-    font-size: 15px;
-    text-transform: uppercase;
-}
-
-.banner .sign-in-form .sign-in-input .sign-in-input-box {
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .display-wrapper {
     position: relative;
     width: 100%;
-    height: 20px;
-    margin: 5px 0;
+    height: 23vh;
+    border-radius: 10px;
+    transition: 0.25s;
+    overflow: hidden;
 }
 
-.banner .sign-in-form .sign-in-input .sign-in-input-box .sign-in-input-text {
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .display-wrapper .display {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info {
+    width: 100%;
+    height: 80px;
+    padding: 5px 0;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: row;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .profile-wrapper {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    margin-right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .profile-wrapper .profile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description {
+    flex: 9;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    color: white;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-title-wrapper {
+    width: 100%;
+    height: 20px;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-title-wrapper .publication-title {
     width: 100%;
     height: 100%;
     color: white;
-    font-size: 17px;
-    background-color: transparent;
-    border: none;
-    outline: none;
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.banner .sign-in-form .sign-in-input .sign-in-input-box span {
-    position: absolute;
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper {
     width: 100%;
-    height: 2px;
-    left: 0;
-    bottom: -2px;
-    background-color: rgba(255, 255, 255, 0.1);
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
 }
 
-.banner .sign-in-form button {
-    width: 150px;
-    height: 30px;
-    margin: 15px 0;
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper .publication-statistic {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper .publication-statistic h3 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .publication-info .publication-description .publication-statistic-wrapper .publication-price {
     color: white;
-    text-transform: uppercase;
-    background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.25s;
+    font-size: 14px;
 }
 
-.banner .sign-in-form button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid white;
+.section-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between sections */
+    margin-left: 10vw;
+    margin-right: 5vw;
 }
 
-.banner .sign-in-form .line-break {
-    width: 80%;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
+.section-item {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* background-color: #f9f9f9; */
+}
+
+.section-item h2 {
+    margin-top: 0;
 }

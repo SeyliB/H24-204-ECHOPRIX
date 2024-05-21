@@ -2,53 +2,92 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
+const { Binary } = require('mongodb');
 const fs = require('fs');
 const { spawn } = require('child_process');
 
 
 
+
 router.get('/publications', async (req, res) =>{
+
     try {
         var page = req.session.test || 1;
         req.session.test = page+1
-        const limit = 100;
+        const limit = 2;
         const skip = 1; //Faire (page - 1) * limit
         
         //La ca spawn 5 par 5
 
-        const data = await Post.find().skip(skip).limit(limit);
-
-        // timers = createPostTimersArray(data)
-        const timers = await new Promise((resolve, reject) => {
-            createPostTimersArray(data, (timers) => {
-                resolve(timers); 
-            });
-        });
 
 
-        res.render('publications', {data, timers});
+        const categoriesName = ["Video Games", "Cars", "Vegetation", "Home Appliances", "Fashion Accessories", "Sports Equipment", "Art Supplies", "Books", "Pet Supplies", "Furniture", "Electronics", "Jewelry", "Toys", "Health & Beauty Products", "Kitchenware", "Outdoor Gear", "Musical Instruments", "Fitness Equipment", "Tools & Hardware", "Office Supplies"]
+
+
+        let categories = new Map();
+
+        async function fetchPosts() {
+            for (const categorie of categoriesName) {
+                 const CategoriePost = await Post.find({ category: categorie }).exec();
+                 categories.set(categorie, CategoriePost);
+
+                 for(const post of CategoriePost){
+
+                    const timer = await new Promise((resolve, reject) => {
+                        createPostTimersArray(post, (timer) => {
+                            resolve(timer); 
+                        });
+                    });
+                    
+                    post.posted = timer
+
+                    // post.creator = await Post.findById(post.creatorID).exec();
+
+                    // const buffer = Buffer.from(post.creator.image, 'base64');
+                    // // Create a Binary object using the Binary constructor with new
+                    // const binaryData = new Binary(buffer, Binary.SUBTYPE_BYTE_ARRAY);
+                    // post.creator.image = binaryData
+
+                    
+                    
+
+                 }
+                    
+            }
+            return categories
+        }
+
+        
+        
+
+
+        // timer = createPostTimersArray(data)
+        // const timer = await new Promise((resolve, reject) => {
+        //     createPostTimersArray(post, (timers) => {
+        //         resolve(timers); 
+        //     });
+        // });
+
+        if (req.session.connected){
+            const buffer = Buffer.from(req.session.user.image, 'base64');
+            // Create a Binary object using the Binary constructor with new
+            const binaryData = new Binary(buffer, Binary.SUBTYPE_BYTE_ARRAY);
+            req.session.user.image = binaryData
+        }
+
+
+        const data = {
+            session: req.session,
+            categories: await fetchPosts()
+        }
+
+
+        res.render('publications', {categories, data}); //data to dataposts
+
     } catch (error) {
         console.log(error);
     }
 })
-
-router.post('/sendPost', async (req, res)=>{
-    const {title, description, adresse, price, images} = await req.body;
-    insertPostData(title, description, adresse, price, images)
-})
-
-function getPostCategory(title,description,callback){
-    const pythonScript = spawn('python', ['server/python_scripts/categotizer.py', title, description]);
-
-
-    pythonScript.stdout.on('data', (data) => {
-        //En faite ca lit le output dans la console de ce qui a ete ecris par le prog python
-       const category = data.toString().trim();
-        callback(category);
-    });
-
-
-}
 
 function getPostTimer(time, callback){
     const pythonScript = spawn('python', ['server/python_scripts/timer.py', time]);
@@ -59,42 +98,6 @@ function getPostTimer(time, callback){
        const counter = data.toString().trim();
         callback(counter);
     });
-}
-
-async function insertPostData(title, description, adresse, price, images) {
-    
-        //Les callbacks c'est op quand on a besoin d'attendre qu'une tache s'execute
-        const category = await new Promise((resolve, reject) => {
-            getPostCategory(title, description, (category) => {
-                resolve(category); 
-            });
-        });
-
-        let imagesBuffered = []
-
-        for (let i = 0; i < images.length; i++){
-            let imageData = {
-                data: fs.readFileSync(images[i]), // Provide the image data as a Buffer
-                contentType: 'image' // Specify the content type of the image
-            };
-            imagesBuffered.push(imageData);
-        }
-
-        // Insert post data into the database
-        const result = await Post.insertMany([
-            {
-                title: title,
-                description: description,
-                adresse: adresse,
-                price: price,
-                category: category, // Use the category obtained from the callback
-                images: imagesBuffered, // Use the read image data
-                vues: 0
-            }
-        ]);
-
-        console.log("Data successfully sent");
-
 }
 
 function changeDateFormat(timestamp) {
@@ -113,7 +116,7 @@ function changeDateFormat(timestamp) {
     const milliseconds = String(adjustedDate.getUTCMilliseconds()).padStart(3, '0');
 
     const formattedDateString = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}+00:00`;
-    console.log(formattedDateString)
+    // console.log(formattedDateString)
 
     return formattedDateString;
 
@@ -121,35 +124,43 @@ function changeDateFormat(timestamp) {
 
 async function createPostTimersArray(posts, callback){
 
-    let timers = []
-    for (let i = 0; i < posts.length; i++){
+    // let timer = []
+    // for (let i = 0; i < posts.length; i++){
 
-        let time= changeDateFormat(posts[i].createdAt)
+    //     let time= changeDateFormat(posts[i].createdAt)
 
 
+
+    //     const timer = await new Promise((resolve, reject) => {
+    //         getPostTimer(time, (counter) => {
+    //             resolve(counter); 
+    //         });
+    //     });
+        
+    //     console.log(timer)
+
+    //     timer.push(timer)
+    // }
+
+    // console.log(timers)
 
         const timer = await new Promise((resolve, reject) => {
-            getPostTimer(time, (counter) => {
+            getPostTimer(changeDateFormat(posts.createdAt), (counter) => {
                 resolve(counter); 
             });
         });
-        
+    callback(timer)
 
-        timers.push(timer)
-    }
-    // console.log(timers)
-    callback(timers)
-
-    return timers
+    return timer
 }
+
+
 
 async function addView(id){
     const currentPost = await User.findOne({ id }); 
     currentPost.vues++;
 }
 
-//TestData
-const images = ["public/images/LOGO.png", "public/images/profile.jpg"]
-insertPostData("Taha3", "ne sait pas quand le train arrive","2221 rue de Bdeb",600,images);
+
 
 module.exports = router;

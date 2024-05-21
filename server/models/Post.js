@@ -1,3 +1,4 @@
+const fs = require('fs');
 const mongoose = require(`mongoose`);
 
 const Schema = mongoose.Schema;
@@ -34,7 +35,16 @@ const PostSchema = new Schema({
         type:String,
         required: true
     },
-    images: [ImageSchema],
+    creatorID:{
+        type:String,
+        required: true
+    },
+    // images: [ImageSchema],
+    images: {
+        type: Buffer,
+        default: fs.readFileSync("public/images/search.png"),
+        required: true
+    },
     vues:{
         type:Number,
         default:0

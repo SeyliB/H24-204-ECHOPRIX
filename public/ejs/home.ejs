@@ -1,43 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/home.css">
-    <title>ACCUEIL</title>
-</head>
-
-<body>
-
-    <div class="banner">
-        <div class="web-bar">
-            <div class="nav-bar">
-                <img src="images/logo.png" class="logo">
-                <form>
-                    <div class="search">
-                        <img class="search-icon" src="images/search.png" alt="">
-                        <input class="search-box" type="search" placeholder="Search">
-                    </div>
-                </form>
+<html>
+    <head>
+        <title>
+            ECHOPRIX
+        </title>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <% if (data.session.connected) { %>
+            <%- include('header_connected') %>
+        <% } else { %>
+            <%- include('header_visitor') %>
+        <% } %>
+        <section class="banner">
+            <div class="banner-description">
+                <h1>Commencez la recherche maintenant</h1>
+                <p>Venez voir comment echoprix peut vous aider à trouver ce que vous désirez.<br>Recherchez les produits que vous n'auriez jamais pu imaginé trouver!</p>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/publications">Publications</a></li>
-                    <li><a href="ejs/home.ejs">Profile</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/sign-in">Sign in</a></li>
+                    <li><button class="login" onclick="location.href='login'" type="button"><span></span>Se Connecter</button></li>
+                    <li><button class="sign-in" onclick="location.href='sign-in'" type="button"><span></span>Créer un compte</button></li>
                 </ul>
             </div>
-        </div>
-        <div class="content">
-            <h1>Start Searching Now</h1>
-            <p>Come and see how echoprix can help you find the things you want.<br>Search the products you could never imagine to find !</p>
-            <div>
-                <button type="button" onclick="location.href='login'"><span></span>Login</button>
-                <button type="button" onclick="location.href='/sign-in'"><span></span>Sign in</button>
-            </div>
-        </div>
-    </div>
-
-</body>
+        </section>
+    </body>
 </html>
