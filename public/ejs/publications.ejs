@@ -16,7 +16,6 @@
         <% } %>
         <div class="section-list">
 
-        
             <% data.categories.forEach(function(categorie, key) { %>
                 <% if(categorie.length > 0) {%>
                 <h1 class="publication-list-title"><%= key %></h1>
@@ -81,8 +80,8 @@
                     new Splide(splide, {
                         width: "100%",
                         perPage: 4,
-                        gap: "10px",
-                        type: "loop",
+                        // gap: "10px",
+                        // type: "loop",
                         autoplay: true,
                         interval: 2500,
                         lazyLoad: 'nearby',

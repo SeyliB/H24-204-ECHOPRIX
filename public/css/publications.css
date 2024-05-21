@@ -291,7 +291,7 @@ header .header-content ul li .profile-wrapper:hover span {
     overflow: hidden;
 }
 
-.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .display-wrapper .display {
+.banner .publication-wrapper .publication-list-wrapper .publication-list .publication .display-wrapper .icon {
     position: absolute;
     width: 100%;
     height: 100%;
