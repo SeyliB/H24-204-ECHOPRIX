@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "app.js",
     "dev": "nodemon app.js",
-    "test2": "start.bat"
+    "build": "node app.js"
   },
   "keywords": [],
   "author": "",
