@@ -83,7 +83,7 @@ router.post('/sendPost', async (req, res)=>{
     const {title, description, adresse, price} = await req.body;
     // insertPostData(title, description, adresse, price, images)
 
-    insertPostData(title, description, adresse, price, req.session.id,req.session.tempImage)
+    insertPostData(title, description, adresse, price, req.session.user._id,req.session.tempImage)
 
     res.redirect('publications');
 })

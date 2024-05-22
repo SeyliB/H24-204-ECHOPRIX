@@ -24,10 +24,23 @@ router.get('/display/:id', async (req, res) =>{
             });
         });
 
+         post.postCreator = await User.findById(post.creatorID).exec();
+
+   
+
+         
+         const buffer2 = Buffer.from(post.postCreator.image, 'base64');
+         // Create a Binary object using the Binary constructor with new
+         const binaryData2 = new Binary(buffer2, Binary.SUBTYPE_BYTE_ARRAY);
+         post.postCreator.image = binaryData2
+
         const data = {
             session: req.session,
             post: post
         }
+
+        let newVues = post.vues+1
+        const postUpdated = await Post.findByIdAndUpdate(post._id, { vues:newVues }, { new: true });
         res.render('display', {data}); //data to dataposts
 })
 

@@ -5,6 +5,8 @@ const Post = require('../models/Post');
 const { Binary } = require('mongodb');
 const fs = require('fs');
 const { spawn } = require('child_process');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 
 
 
@@ -41,12 +43,15 @@ router.get('/publications', async (req, res) =>{
                     
                     post.posted = timer
 
-                    // post.creator = await Post.findById(post.creatorID).exec();
+                
+                    const postCreator = await User.findById(post.creatorID).exec();
 
-                    // const buffer = Buffer.from(post.creator.image, 'base64');
-                    // // Create a Binary object using the Binary constructor with new
-                    // const binaryData = new Binary(buffer, Binary.SUBTYPE_BYTE_ARRAY);
-                    // post.creator.image = binaryData
+                    const buffer = Buffer.from(postCreator.image, 'base64');
+                    // Create a Binary object using the Binary constructor with new
+                    const binaryData = new Binary(buffer, Binary.SUBTYPE_BYTE_ARRAY);
+                    post.creatorImage = binaryData
+
+
 
                     
                     
@@ -57,7 +62,6 @@ router.get('/publications', async (req, res) =>{
             return categories
         }
 
-        
         
 
 

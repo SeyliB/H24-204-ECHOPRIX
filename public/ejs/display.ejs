@@ -20,7 +20,7 @@
                 <div class="publication-info-wrapper">
                     <h1 class="publication-info"><%= data.post.price%>$</h1>
                     <div class="publication-statistic-wrapper">
-                        <h1 class="publication-info"><%= data.post.vues%></h1>
+                        <h1 class="publication-info"><%= data.post.vues + 1%> vues</h1>
                         <h1 class="publication-info"><%= data.post.posted%></h1>
                     </div>
                 </div>
@@ -35,13 +35,13 @@
             <div class="publisher-wrapper">
                 <div class="publisher-banner">
                     <div class="profile-wrapper">
-                        <img class="profile" src="/images/profile.jpg" alt="">
+                        <img class="profile" src="data:image/jpeg;base64,<%= data.post.postCreator.image.toString('base64') %>" alt=" ">
                     </div>
-                    <h1 class="publisher-first-name">Ilyes</h1>
-                    <h1 class="publisher-last-name">Belhaddad</h1>
+                    <h1 class="publisher-first-name"><%= data.post.postCreator.firstName%></h1>
+                    <h1 class="publisher-last-name"><%= data.post.postCreator.lastName%></h1>
                     <div class="publisher-info-wrapper">
                         <h1 class="publisher-info-title">Email</h1>
-                        <h1 class="publisher-info">taha.khalfi.ob@gmail.com</h1>
+                        <h1 class="publisher-info"><%= data.post.postCreator.email%></h1>
                     </div>
                     <div class="publisher-info-wrapper">
                         <h1 class="publisher-info-title">Adresse</h1>
