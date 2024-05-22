@@ -1,3 +1,3 @@
 @echo off
-call .\.venv\Scripts\activate
+call .\.venv\Scripts\Activate.ps1
 call npm run dev
