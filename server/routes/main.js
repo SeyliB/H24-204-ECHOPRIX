@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         session: req.session,
     };
 
-    console.log("MAINNNNN")
+    console.log("MAINNNN")
     res.render('home', {data});
 });
 
