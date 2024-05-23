@@ -1,10 +1,4 @@
 @echo off
 
-python -m venv venv
-.\venv\Scripts\activate
+pip install -r requirements.txt
 
-
-pip install transformers
-pip install torch torchvision torchaudio
-
-pause >nul

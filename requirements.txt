@@ -1,0 +1,5 @@
+virtualenv
+transformers
+torch
+torchvision
+torchaudio
