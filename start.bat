@@ -7,5 +7,4 @@ python -m venv venv
 pip install transformers
 pip install torch torchvision torchaudio
 
-node index.js
 pause >nul
