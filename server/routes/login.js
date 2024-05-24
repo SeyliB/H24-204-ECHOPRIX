@@ -1,41 +1,42 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User');
-const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const { Binary } = require('mongodb');
+const express = require('express'); // Importe le module express
+const router = express.Router(); // Crée un routeur express
+const User = require('../models/User'); // Importe le modèle User
+const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Définie une expression régulière pour valider les emails
+const { Binary } = require('mongodb'); // Importe l'objet Binary de MongoDB
 
+// Route GET pour la page de connexion
+router.get('/login', (req, res) => {
+    res.render('login'); // Rend la vue 'login'
+});
 
-router.get('/login', (req, res) =>{
-    res.render('login');
-})
-
-router.post('/login', async (req, res) =>{
+// Route POST pour traiter le formulaire de connexion
+router.post('/login', async (req, res) => {
     try {
-        //Recuperer les informations du form
-        const {email, password} = req.body;
+        // Récupère les informations du formulaire
+        const { email, password } = req.body;
 
-        //Check si email correspond aux contraintes
-        if (regexEmail.test(email)){
-        //Check si exist dans Mongo
-        const existingUser = await User.findOne({ email }); 
+        // Vérifie si l'email correspond aux contraintes définies par l'expression régulière
+        if (regexEmail.test(email)) {
+            // Vérifie si l'utilisateur existe dans MongoDB
+            const existingUser = await User.findOne({ email });
 
-        //conditions pour se connecter
-        if (existingUser && existingUser.password.toLowerCase() === password.toLowerCase()) {
-            req.session.user = existingUser;
-            req.session.connected = true;
-            res.redirect('/publications'); 
+            // Conditions pour se connecter
+            if (existingUser && existingUser.password.toLowerCase() === password.toLowerCase()) {
+                // Si l'utilisateur existe et que le mot de passe est correct
+                req.session.user = existingUser; // Stocke l'utilisateur dans la session
+                req.session.connected = true; // Indique que l'utilisateur est connecté
+                res.redirect('/publications'); // Redirige vers la page des publications
+            } else {
+                // Si l'utilisateur n'existe pas ou que le mot de passe est incorrect
+                res.redirect('/login'); // Redirige vers la page de connexion
+            }
         } else {
-            res.redirect('/login');
-        }
-        }else{
-            res.redirect('/login');
+            // Si l'email ne correspond pas aux contraintes
+            res.redirect('/login'); // Redirige vers la page de connexion
         }
     } catch (error) {
-        console.log(error);
+        console.log(error); // Affiche l'erreur dans la console en cas de problème
     }
+});
 
-
-})
-
-
-module.exports = router;
+module.exports = router; // Exporte le routeur

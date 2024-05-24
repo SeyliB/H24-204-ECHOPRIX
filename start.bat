@@ -18,5 +18,5 @@ if exist "requirements.txt" (
     echo requirements.txt not found.
 )
 
-rem Indicate that the process is complete
+npm run start
 echo Installation and setup complete.
