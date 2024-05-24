@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "start.bat && node index.js",
-    "dev": "nodemon index.js"
+    "build": "start.bat && node index.js",
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
