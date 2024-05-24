@@ -18,5 +18,4 @@ if exist "requirements.txt" (
     echo requirements.txt not found.
 )
 
-npm run start
 echo Installation and setup complete.
